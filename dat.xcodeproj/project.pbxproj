@@ -6,6 +6,21 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		65910BB8125C9F58007D6C5E /* Install plugin for user */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 65910BBB125C9F76007D6C5E /* Build configuration list for PBXAggregateTarget "Install plugin for user" */;
+			buildPhases = (
+				65910BB7125C9F58007D6C5E /* ShellScript */,
+			);
+			dependencies = (
+				65910BBD125C9F82007D6C5E /* PBXTargetDependency */,
+			);
+			name = "Install plugin for user";
+			productName = "Install plugin for user";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		2C05A19C06CAA52B00D84F6F /* GeneratePreviewForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */; };
 		61E3BCFB0870B4F2002186A0 /* GenerateThumbnailForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */; };
@@ -31,6 +46,16 @@
 		F28CFBFD0A3EC0AF000ABFF5 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CFBFC0A3EC0AF000ABFF5 /* ApplicationServices.framework */; };
 		F28CFC030A3EC0C6000ABFF5 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CFC020A3EC0C6000ABFF5 /* QuickLook.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65910BBC125C9F82007D6C5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D57630D048677EA00EA77CD /* dat */;
+			remoteInfo = dat;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		AEBF2BB211375622005B827D /* CopyFiles */ = {
@@ -268,6 +293,7 @@
 			projectRoot = "";
 			targets = (
 				8D57630D048677EA00EA77CD /* dat */,
+				65910BB8125C9F58007D6C5E /* Install plugin for user */,
 			);
 		};
 /* End PBXProject section */
@@ -295,6 +321,22 @@
 		};
 /* End PBXRezBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		65910BB7125C9F58007D6C5E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -Rf \"$HOME/Library/Quicklook/dat.qlgenerator\"\ncp -R \"$BUILT_PRODUCTS_DIR/dat.qlgenerator\" \"$HOME/Library/Quicklook/dat.qlgenerator\"\nexit 0";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D576311048677EA00EA77CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -311,6 +353,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65910BBD125C9F82007D6C5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D57630D048677EA00EA77CD /* dat */;
+			targetProxy = 65910BBC125C9F82007D6C5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		8D5B49A704867FD3000E48DA /* InfoPlist.strings */ = {
@@ -384,6 +434,27 @@
 			};
 			name = Release;
 		};
+		65910BB9125C9F58007D6C5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Install plugin for user";
+			};
+			name = Debug;
+		};
+		65910BBA125C9F58007D6C5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Install plugin for user";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -401,6 +472,15 @@
 			buildConfigurations = (
 				2CA326230896AD4900168862 /* Debug */,
 				2CA326240896AD4900168862 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65910BBB125C9F76007D6C5E /* Build configuration list for PBXAggregateTarget "Install plugin for user" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65910BB9125C9F58007D6C5E /* Debug */,
+				65910BBA125C9F58007D6C5E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
