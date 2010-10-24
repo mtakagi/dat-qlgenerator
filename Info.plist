@@ -1,9 +1,14 @@
+#define VERSION 0.0.1
+
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>ja_JP</string>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
+	#ifndef BUILD_FOR_BATHYSCAPHE
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
@@ -19,6 +24,7 @@
 				</array>
 			</dict>
 		</dict>
+	#endif
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
@@ -36,8 +42,6 @@
 			</dict>
 		</dict>
 	</array>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>English</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -45,7 +49,9 @@
 			<string>QLGenerator</string>
 			<key>LSItemContentTypes</key>
 			<array>
+			#ifndef BUILD_FOR_BATHYSCAPHE
 				<string>net.2ch.dat</string>
+			#endif
 				<string>jp.tsawada2.bathyscaphe.thread</string>
 			</array>
 		</dict>
@@ -55,7 +61,11 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
+	#ifdef BUILD_FOR_BATHYSCAPHE
+	<string>jp.tsawada2.BathyScaphe.qlgenerator</string>
+	#else
 	<string>com.fc2.web.outofboundary.qlgenerator.${PRODUCT_NAME:identifier}</string>
+	#endif
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -63,7 +73,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
 	<key>CFBundleVersion</key>
-	<string>0.0.1</string>
+	<string>VERSION</string>
 	<key>CFPlugInDynamicRegisterFunction</key>
 	<string></string>
 	<key>CFPlugInDynamicRegistration</key>
