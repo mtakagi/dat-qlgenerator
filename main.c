@@ -24,7 +24,11 @@
 // -----------------------------------------------------------------------------
 
 // Don't modify this line
+#if defined(BUILD_FOR_BATHYSCAPHE) && !defined(TEST_FOR_PLUGIN_ID)
+#define PLUGIN_ID "4418A583-2AF8-4978-8981-135D2BFE6749"
+#else
 #define PLUGIN_ID "0FA2C21B-874B-4BF5-895C-1057BC05E272"
+#endif
 
 //
 // Below is the generic glue code for all plug-ins.

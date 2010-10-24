@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
+		650FF28512747E2C008B8648 /* Installer for BS */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 650FF28E12747E8B008B8648 /* Build configuration list for PBXAggregateTarget "Installer for BS" */;
+			buildPhases = (
+				650FF28412747E2C008B8648 /* ShellScript */,
+			);
+			dependencies = (
+				650FF28912747E31008B8648 /* PBXTargetDependency */,
+			);
+			name = "Installer for BS";
+			productName = "Installer for BS";
+		};
 		65910BB8125C9F58007D6C5E /* Install plugin for user */ = {
 			isa = PBXAggregateTarget;
 			buildConfigurationList = 65910BBB125C9F76007D6C5E /* Build configuration list for PBXAggregateTarget "Install plugin for user" */;
@@ -70,6 +82,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		650FF28812747E31008B8648 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 650FF2001274278A008B8648 /* Build for BathyScaphe */;
+			remoteInfo = "Build for BathyScaphe";
+		};
 		65910BBC125C9F82007D6C5E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
@@ -121,7 +140,7 @@
 		08FB77B6FE84183AC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GeneratePreviewForURL.mm; sourceTree = "<group>"; };
-		61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = sourcecode.cpp.objcpp; path = GenerateThumbnailForURL.mm; sourceTree = "<group>"; };
+		61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenerateThumbnailForURL.mm; sourceTree = "<group>"; };
 		650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BathyScaphe.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		650FF2211274278A008B8648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D576316048677EA00EA77CD /* dat.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dat.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,6 +387,7 @@
 				8D57630D048677EA00EA77CD /* dat */,
 				650FF2001274278A008B8648 /* Build for BathyScaphe */,
 				65910BB8125C9F58007D6C5E /* Install plugin for user */,
+				650FF28512747E2C008B8648 /* Installer for BS */,
 			);
 		};
 /* End PBXProject section */
@@ -413,6 +433,19 @@
 /* End PBXRezBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		650FF28412747E2C008B8648 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "rm -Rf \"$HOME/Library/Quicklook/BathyScaphe.qlgenerator\"\ncp -R \"$BUILT_PRODUCTS_DIR/BathyScaphe.qlgenerator\" \"$HOME/Library/Quicklook/BathyScaphe.qlgenerator\"\nexit 0\n";
+		};
 		65910BB7125C9F58007D6C5E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,6 +492,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		650FF28912747E31008B8648 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 650FF2001274278A008B8648 /* Build for BathyScaphe */;
+			targetProxy = 650FF28812747E31008B8648 /* PBXContainerItemProxy */;
+		};
 		65910BBD125C9F82007D6C5E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8D57630D048677EA00EA77CD /* dat */;
@@ -587,6 +625,27 @@
 			};
 			name = Release;
 		};
+		650FF28612747E2C008B8648 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Installer for BS";
+			};
+			name = Debug;
+		};
+		650FF28712747E2C008B8648 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Installer for BS";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		65910BB9125C9F58007D6C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -634,6 +693,15 @@
 			buildConfigurations = (
 				650FF21E1274278A008B8648 /* Debug */,
 				650FF21F1274278A008B8648 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		650FF28E12747E8B008B8648 /* Build configuration list for PBXAggregateTarget "Installer for BS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				650FF28612747E2C008B8648 /* Debug */,
+				650FF28712747E2C008B8648 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

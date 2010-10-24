@@ -31,7 +31,11 @@
 #define ID_COUNT_DICTIONARY CFSTR("IDCountDictionary")
 #define RES_DICTIONARY_ARRAY CFSTR("ResDictionaryArray")
 
+#ifdef BUILD_FOR_BATHYSCAPHE
+#define DAT_QLGENERATOR_BUNDLE_IDENTIFIER CFSTR("jp.tsawada2.BathyScaphe.qlgenerator")
+#else
 #define DAT_QLGENERATOR_BUNDLE_IDENTIFIER CFSTR("com.fc2.web.outofboundary.qlgenerator.dat")
+#endif
 
 // テスト用途
 
