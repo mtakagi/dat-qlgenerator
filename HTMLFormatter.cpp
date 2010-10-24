@@ -8,10 +8,15 @@
 
 #include <QuickLook/QuickLook.h>
 #include "common.h"
+
+#ifndef BUILD_FOR_BATHYSCAPHE
 #include "ParsedDictionaryCreateFromDatURL.h"
+#endif
+
 #include "ParsedDictionaryCreateFromThreadURL.h"
 #include "HTMLFormatter.h"
 
+// 静的メンバ変数
 const CFBundleRef HTMLFormatter::bundle = CFBundleGetBundleWithIdentifier(DAT_QLGENERATOR_BUNDLE_IDENTIFIER);
 const CFURLRef HTMLFormatter::resourceFolderURL = CFBundleCopyResourcesDirectoryURL(bundle);
 const CFURLRef HTMLFormatter::skinFolderURL = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault, resourceFolderURL, CFSTR("/Skin"), true);
@@ -232,9 +237,12 @@ void HTMLFormatter::setURL(const CFURLRef url)
 	if (datURL != NULL) CFRelease(datURL);
 	datURL = url;
 	if (parsedDictionary != NULL) CFRelease(parsedDictionary);
+#ifndef BUILD_FOR_BATHYSCAPHE	
 	if (CFEqual(extension, CFSTR("dat"))) {
 		parsedDictionary = ParsedDictionaryCreateFromDatURL(datURL);
-	} else if (CFEqual(extension, CFSTR("thread"))) {
+	} else
+#endif
+	if (CFEqual(extension, CFSTR("thread"))) {
 		parsedDictionary = ParsedDictionaryCreateFromThreadURL(datURL);
 	}
 	if (isSkinChanged()) {
