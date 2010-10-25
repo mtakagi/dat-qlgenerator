@@ -86,7 +86,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 650FF2001274278A008B8648 /* Build for BathyScaphe */;
+			remoteGlobalIDString = 650FF2001274278A008B8648;
 			remoteInfo = "Build for BathyScaphe";
 		};
 		65910BBC125C9F82007D6C5E /* PBXContainerItemProxy */ = {
@@ -143,6 +143,7 @@
 		61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenerateThumbnailForURL.mm; sourceTree = "<group>"; };
 		650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BathyScaphe.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		650FF2211274278A008B8648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		650FF31D12759F9A008B8648 /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		8D576316048677EA00EA77CD /* dat.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dat.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE28203F0FBB0B5000EDA54A /* guess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guess.c; sourceTree = "<group>"; };
 		AE2820400FBB0B5000EDA54A /* guess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guess.h; sourceTree = "<group>"; };
@@ -206,6 +207,7 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB6FE9D52B211CA2CBB /* Products */,
+				650FF31D12759F9A008B8648 /* Rakefile */,
 			);
 			name = dat;
 			sourceTree = "<group>";
