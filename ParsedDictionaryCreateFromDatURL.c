@@ -8,30 +8,33 @@
  */
 
 #include "ParsedDictionaryCreateFromDatURL.h"
-#include "guess.h"
+#include "guess.h" // Gauche guess.h
 
 
 static CFMutableDictionaryRef idDictionary;
 static aslclient client;
 
-// JapaneseText.qlgeneratorのコードを一部改変したもの。
-// TODO: コメントを付ける
 
-CFStringRef DatStringCreateFromData(CFDataRef data)
+// TODO: コメントを付ける
+// JapaneseText.qlgeneratorのコードを一部改変したもの。
+// CFDataRef から文字コードを判別して CFStringRef を返す。
+static CFStringRef DatStringCreateFromData(CFDataRef data)
 {
-	const char *encoding;
+	const char *encoding; // guess_jp が返す文字コード。
 	aslmsg msg = asl_new(ASL_TYPE_MSG);
 	asl_set(msg, ASL_KEY_FACILITY, "Convert Text Encoding");
 	
 	encoding = guess_jp((const char *)CFDataGetBytePtr(data), CFDataGetLength(data));
 	
 	if (encoding != NULL) {
+		// guess_jp が返した IANA 式の文字コード名を CFStringEncoding に変換する。
 		CFStringRef encodingRef = CFStringCreateWithCString(kCFAllocatorDefault, encoding, kCFStringEncodingMacRoman);
 		CFStringEncoding stringEncoding = CFStringConvertIANACharSetNameToEncoding(encodingRef);
 		CFStringRef datString = NULL;
 		
 		asl_log(client, msg, ASL_LEVEL_NOTICE, "encoding is %s", encoding);
 		
+		// TODO: データ→テキスト変換が煩雑なので修正する。ただし CFString は指定した文字コードに invaild なものが含まれると生成できないのでそこらへんをどうにかする。
 		if (stringEncoding == CFStringGetSystemEncoding()) {
 			datString = CFStringCreateFromExternalRepresentation(NULL, data, CFStringGetSystemEncoding());
 			asl_log(client, msg, ASL_LEVEL_DEBUG, "%s is System Encoding", encoding);
@@ -82,7 +85,8 @@ CFStringRef DatStringCreateFromData(CFDataRef data)
 	return NULL;
 }
 
-CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
+// dat ファイルの1行分を解析してディクショナリを返す。
+static CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 {
 	CFArrayRef resComponents = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, line, CFSTR("<>"));
 	CFMutableDictionaryRef resDictionary;
@@ -95,23 +99,26 @@ CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 	
 	resDictionary = CFDictionaryCreateMutable(kCFAllocatorDefault, 6, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 	
-	CFDictionarySetValue(resDictionary, k2ChMessageName, CFArrayGetValueAtIndex(resComponents, 0));
-	CFDictionarySetValue(resDictionary, k2ChMessageMail, CFArrayGetValueAtIndex(resComponents, 1));
+	CFDictionarySetValue(resDictionary, k2ChMessageName, CFArrayGetValueAtIndex(resComponents, 0)); // 名前をセット
+	CFDictionarySetValue(resDictionary, k2ChMessageMail, CFArrayGetValueAtIndex(resComponents, 1)); // メールをセット
+	
+	// 日付と ID 分離する。
 	dateAndID = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, CFArrayGetValueAtIndex(resComponents, 2), CFSTR(" ID:"));
 
 	if (CFArrayGetCount(dateAndID) == 2) {
-		CFDictionarySetValue(resDictionary, k2ChMessageTime, CFArrayGetValueAtIndex(dateAndID, 0));
+		CFDictionarySetValue(resDictionary, k2ChMessageTime, CFArrayGetValueAtIndex(dateAndID, 0)); // 日付をセット
+		// ID と BE を分離。
 		CFArrayRef idAndBE = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, CFArrayGetValueAtIndex(dateAndID, 1), CFSTR(" BE:"));
 		CFStringRef id = CFArrayGetValueAtIndex(idAndBE, 0);
 		
 		if (CFArrayGetCount(idAndBE) == 2) {
-			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(idAndBE, 0));
-			CFDictionarySetValue(resDictionary, k2ChMessageBe, CFArrayGetValueAtIndex(idAndBE, 1));
+			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(idAndBE, 0)); // ID をセット
+			CFDictionarySetValue(resDictionary, k2ChMessageBe, CFArrayGetValueAtIndex(idAndBE, 1)); // Be をセット
 		} else {
-			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(dateAndID, 1));
+			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(dateAndID, 1)); // ID のみをセット
 		}
 		
-		
+		// ID の出現回数をチャック
 		if (id != NULL && CFStringCompare(id, CFSTR(""), 0) != kCFCompareEqualTo) {
 			CFNumberRef number;
 			CFNumberRef newNumber;
@@ -125,17 +132,17 @@ CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 			newNumber = CFNumberCreate(kCFAllocatorDefault, kCFNumberIntType, &n);
 			CFDictionarySetValue(idDictionary, id, newNumber);
 			
-			
 			CFRelease(newNumber);
 		}
 		
 		CFRelease(idAndBE);
 		
 	} else {
-		CFDictionarySetValue(resDictionary, k2ChMessageTime, CFArrayGetValueAtIndex(resComponents, 2));
+		CFDictionarySetValue(resDictionary, k2ChMessageTime, CFArrayGetValueAtIndex(resComponents, 2)); // 日付をセット
 	}
-	CFDictionarySetValue(resDictionary, k2ChMessageBody, CFArrayGetValueAtIndex(resComponents, 3));
+	CFDictionarySetValue(resDictionary, k2ChMessageBody, CFArrayGetValueAtIndex(resComponents, 3)); // 本文をセット
 	
+	// 5つめが存在する場合はスレッドのタイトルをセット。
 	if (CFStringCompare(CFArrayGetValueAtIndex(resComponents, 4), CFSTR(""), 0) != kCFCompareEqualTo) {
 		CFDictionarySetValue(resDictionary, k2ChMessageThreadSubject, CFArrayGetValueAtIndex(resComponents, 4));
 	}
@@ -148,13 +155,13 @@ CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 
 CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url)
 {
-	CFDataRef datData;
-	CFStringRef dat;
-	CFArrayRef lines;
-	CFMutableArrayRef resDictionaryArray;
-	CFMutableDictionaryRef datDictionary = NULL;
+	CFDataRef datData; // url から作成した dat ファイルのデータ
+	CFStringRef dat; // datData から作成した dat ファイルのテキスト
+	CFArrayRef lines; // dat ファイルを行で分割した配列
+	CFMutableArrayRef resDictionaryArray; // 
+	CFMutableDictionaryRef datDictionary = NULL; // この値を返す
 	Boolean status;
-	aslclient client = asl_open("Parsing Dat", NULL, ASL_OPT_STDERR);
+	client = asl_open("Parsing Dat", NULL, ASL_OPT_STDERR);
 	aslmsg msg = asl_new(ASL_TYPE_MSG);
 	asl_set(msg, ASL_KEY_FACILITY, "Performance");
 	uint64_t start = mach_absolute_time();
@@ -168,6 +175,7 @@ CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url)
 	}
 	
 	dat = DatStringCreateFromData(datData);
+	CFRelease(datData);
 	
 	if (dat == NULL) {
 		asl_log(client, msg, ASL_LEVEL_ERR, "Converting text encoding is failed");
@@ -178,8 +186,10 @@ CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url)
 	datDictionary = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 	idDictionary = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 	
+	// dat ファイルを1行づつに分割
 	lines = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, dat, CFSTR("\n"));
 	
+	// lines からスレッドを解析した配列を作る。
 	for (CFIndex i = 0; i < CFArrayGetCount(lines); i++) {
 		CFDictionaryRef resDictionary = ResDictionaryCreateFromLine(CFArrayGetValueAtIndex(lines, i));
 		if (resDictionary != NULL) {
