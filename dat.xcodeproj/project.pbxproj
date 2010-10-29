@@ -34,8 +34,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		2C05A19C06CAA52B00D84F6F /* GeneratePreviewForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */; };
-		61E3BCFB0870B4F2002186A0 /* GenerateThumbnailForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */; };
+		2C05A19C06CAA52B00D84F6F /* GeneratePreviewForURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.cpp */; };
+		61E3BCFB0870B4F2002186A0 /* GenerateThumbnailForURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.cpp */; };
 		650FF2021274278A008B8648 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
 		650FF2031274278A008B8648 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = AEF59AB9125B88D7008C7C8C /* license.txt */; };
 		650FF2041274278A008B8648 /* readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = AEF59ABA125B88D7008C7C8C /* readme.txt */; };
@@ -48,8 +48,8 @@
 		650FF20C1274278A008B8648 /* sevenfour.css in CopyFiles */ = {isa = PBXBuildFile; fileRef = AEBF2B6E113751FB005B827D /* sevenfour.css */; };
 		650FF20D1274278A008B8648 /* Title.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = AEBF2B70113751FB005B827D /* Title.html */; };
 		650FF20F1274278A008B8648 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB77B6FE84183AC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
-		650FF2101274278A008B8648 /* GeneratePreviewForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */; };
-		650FF2111274278A008B8648 /* GenerateThumbnailForURL.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */; };
+		650FF2101274278A008B8648 /* GeneratePreviewForURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.cpp */; };
+		650FF2111274278A008B8648 /* GenerateThumbnailForURL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.cpp */; };
 		650FF2121274278A008B8648 /* guess.c in Sources */ = {isa = PBXBuildFile; fileRef = AE28203F0FBB0B5000EDA54A /* guess.c */; };
 		650FF2141274278A008B8648 /* ParsedDictionaryCreateFromThreadURL.c in Sources */ = {isa = PBXBuildFile; fileRef = AED2AEAD114769B800F0E776 /* ParsedDictionaryCreateFromThreadURL.c */; };
 		650FF2151274278A008B8648 /* HTMLFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEAA1CA71153DBC900462942 /* HTMLFormatter.cpp */; };
@@ -58,6 +58,8 @@
 		650FF2191274278A008B8648 /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CFBFC0A3EC0AF000ABFF5 /* ApplicationServices.framework */; };
 		650FF21A1274278A008B8648 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CFC020A3EC0C6000ABFF5 /* QuickLook.framework */; };
 		650FF21B1274278A008B8648 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE64FC120FB8215000E034E1 /* Cocoa.framework */; };
+		6546262A127A7AB8001EFDE8 /* MyCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 65462629127A75C9001EFDE8 /* MyCFUtilities.c */; };
+		6546262B127A7ABE001EFDE8 /* MyCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 65462629127A75C9001EFDE8 /* MyCFUtilities.c */; };
 		8D576312048677EA00EA77CD /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB77B6FE84183AC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
@@ -139,11 +141,13 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		08FB77B6FE84183AC02AAC07 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
-		2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GeneratePreviewForURL.mm; sourceTree = "<group>"; };
-		61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GenerateThumbnailForURL.mm; sourceTree = "<group>"; };
+		2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GeneratePreviewForURL.cpp; sourceTree = "<group>"; };
+		61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GenerateThumbnailForURL.cpp; sourceTree = "<group>"; };
 		650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BathyScaphe.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		650FF2211274278A008B8648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		650FF31D12759F9A008B8648 /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
+		65462628127A75C9001EFDE8 /* MyCFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCFUtilities.h; sourceTree = "<group>"; };
+		65462629127A75C9001EFDE8 /* MyCFUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyCFUtilities.c; sourceTree = "<group>"; };
 		8D576316048677EA00EA77CD /* dat.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dat.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE28203F0FBB0B5000EDA54A /* guess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guess.c; sourceTree = "<group>"; };
 		AE2820400FBB0B5000EDA54A /* guess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guess.h; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 				AEC7D564114469930082CAC6 /* callback */,
 				AEC7D561114469130082CAC6 /* parser */,
 				AEC7D563114469500082CAC6 /* encoding */,
+				65462630127A7AE8001EFDE8 /* Others */,
 				08FB77B6FE84183AC02AAC07 /* main.c */,
 			);
 			name = Source;
@@ -256,6 +261,15 @@
 				650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		65462630127A7AE8001EFDE8 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				65462629127A75C9001EFDE8 /* MyCFUtilities.c */,
+				65462628127A75C9001EFDE8 /* MyCFUtilities.h */,
+			);
+			name = Others;
 			sourceTree = "<group>";
 		};
 		AE2820450FBB0B5700EDA54A /* guess_jp */ = {
@@ -315,8 +329,8 @@
 		AEC7D564114469930082CAC6 /* callback */ = {
 			isa = PBXGroup;
 			children = (
-				61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.mm */,
-				2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.mm */,
+				61E3BCFA0870B4F2002186A0 /* GenerateThumbnailForURL.cpp */,
+				2C05A19B06CAA52B00D84F6F /* GeneratePreviewForURL.cpp */,
 			);
 			name = callback;
 			sourceTree = "<group>";
@@ -468,9 +482,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6546262B127A7ABE001EFDE8 /* MyCFUtilities.c in Sources */,
 				650FF20F1274278A008B8648 /* main.c in Sources */,
-				650FF2101274278A008B8648 /* GeneratePreviewForURL.mm in Sources */,
-				650FF2111274278A008B8648 /* GenerateThumbnailForURL.mm in Sources */,
+				650FF2101274278A008B8648 /* GeneratePreviewForURL.cpp in Sources */,
+				650FF2111274278A008B8648 /* GenerateThumbnailForURL.cpp in Sources */,
 				650FF2121274278A008B8648 /* guess.c in Sources */,
 				650FF2141274278A008B8648 /* ParsedDictionaryCreateFromThreadURL.c in Sources */,
 				650FF2151274278A008B8648 /* HTMLFormatter.cpp in Sources */,
@@ -481,9 +496,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6546262A127A7AB8001EFDE8 /* MyCFUtilities.c in Sources */,
 				8D576312048677EA00EA77CD /* main.c in Sources */,
-				2C05A19C06CAA52B00D84F6F /* GeneratePreviewForURL.mm in Sources */,
-				61E3BCFB0870B4F2002186A0 /* GenerateThumbnailForURL.mm in Sources */,
+				2C05A19C06CAA52B00D84F6F /* GeneratePreviewForURL.cpp in Sources */,
+				61E3BCFB0870B4F2002186A0 /* GenerateThumbnailForURL.cpp in Sources */,
 				AE2820420FBB0B5000EDA54A /* guess.c in Sources */,
 				AE75441D11460C8600C26CBB /* ParsedDictionaryCreateFromDatURL.c in Sources */,
 				AED2AEAF114769B800F0E776 /* ParsedDictionaryCreateFromThreadURL.c in Sources */,

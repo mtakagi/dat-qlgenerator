@@ -7,19 +7,23 @@
  *
  */
 
+#ifndef __COMMON_H__
+#define __COMMON_H__
+
 #include <CoreServices/CoreServices.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <asl.h>
 #include <mach/mach_time.h>
+
+#include "MyCFUtilities.h"
 
 #ifdef __OBJC__
 #include <Foundation/Foundation.h>
 #endif
 
 
-//SevenFourからもってきた。.thread互換用途に中身を入れ替えてある。
+// SevenFourからもってきた。.thread互換用途に中身を入れ替えてある。
 // TODO: Beに対応していない。
-
 #define k2ChMessageName CFSTR("Name")
 #define k2ChMessageMail CFSTR("Mail")
 #define k2ChMessageBody CFSTR("Message")
@@ -31,14 +35,17 @@
 #define ID_COUNT_DICTIONARY CFSTR("IDCountDictionary")
 #define RES_DICTIONARY_ARRAY CFSTR("ResDictionaryArray")
 
-#ifdef BUILD_FOR_BATHYSCAPHE
-#define DAT_QLGENERATOR_BUNDLE_IDENTIFIER CFSTR("jp.tsawada2.BathyScaphe.qlgenerator")
-#else
-#define DAT_QLGENERATOR_BUNDLE_IDENTIFIER CFSTR("com.fc2.web.outofboundary.qlgenerator.dat")
+// CFBundleIdentifier をビルド時のフラグによって決める
+#ifdef BUILD_FOR_BATHYSCAPHE // BathyScaphe 用
+#define BUNDLE_IDENTIFIER_CSTRING "jp.tsawada2.BathyScaphe.qlgenerator"
+#else // 通常時
+#define BUNDLE_IDENTIFIER_CSTRING "com.fc2.web.outofboundary.qlgenerator.dat"
 #endif
 
-// テスト用途
+#define QLGENERATOR_BUNDLE_IDENTIFIER CFSTR(BUNDLE_IDENTIFIER_CSTRING)
 
+
+// テスト用途
 #define PRINT_ELAPSE(start, client, msg, format) {\
    uint64_t end;\
    uint64_t elapsed;\
@@ -51,3 +58,5 @@
 
 #define QLMANAGE CFSTR("qlmanage")
 #define QUICKLOOKD CFSTR("quicklookd")
+
+#endif // __COMMON_H__

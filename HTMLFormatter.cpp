@@ -17,20 +17,24 @@
 #include "HTMLFormatter.h"
 
 // 静的メンバ変数
-const CFBundleRef HTMLFormatter::bundle = CFBundleGetBundleWithIdentifier(DAT_QLGENERATOR_BUNDLE_IDENTIFIER);
+const CFBundleRef HTMLFormatter::bundle = CFBundleGetBundleWithIdentifier(QLGENERATOR_BUNDLE_IDENTIFIER);
 const CFURLRef HTMLFormatter::resourceFolderURL = CFBundleCopyResourcesDirectoryURL(bundle);
 const CFURLRef HTMLFormatter::skinFolderURL = CFURLCreateCopyAppendingPathComponent(kCFAllocatorDefault, resourceFolderURL, CFSTR("/Skin"), true);
 
 const CFCharacterSetRef HTMLFormatter::multiByteWhiteSpaceCharacterSet = CFCharacterSetCreateWithCharactersInRange(kCFAllocatorDefault, CFRangeMake(12288, 1));
 CFMutableCharacterSetRef HTMLFormatter::aaCharacterSet = CFCharacterSetCreateMutable(kCFAllocatorDefault);
 
+// Initializer and Contructor, Deconstructor
 void HTMLFormatter::init()
 {
+	// AAの判定に使われる Character set を設定
 	CFCharacterSetAddCharactersInString(aaCharacterSet, CFSTR("^!~-"));
-	CFCharacterSetAddCharactersInRange(aaCharacterSet, CFRangeMake(65307, 1));
-	CFCharacterSetAddCharactersInRange(aaCharacterSet, CFRangeMake(65343, 1));
+	CFCharacterSetAddCharactersInRange(aaCharacterSet, CFRangeMake(65307, 1)); // '；'
+	CFCharacterSetAddCharactersInRange(aaCharacterSet, CFRangeMake(65343, 1)); // '＿'
+
 //	m_htmlString = CFStringCreateMutable(kCFAllocatorDefault, 0);
 	start = mach_absolute_time();
+	// TODO: これって必要だっけ?
 	header = NULL;
 	title = NULL;
 	res = NULL;
@@ -40,7 +44,12 @@ void HTMLFormatter::init()
 	parsedDictionary = NULL;
 	client = asl_open("HTMLFormatter", "DEBUG", ASL_OPT_NO_DELAY);
 	
-	asl_log(client, NULL, ASL_LEVEL_NOTICE, "Here comes the init().");
+	// デバッグビルド時に ASL_LEVEL_DEBUG レベルのログを出力をするようにする。
+#ifdef DEBUG
+	(void)asl_set_filter(client, ASL_FILTER_MASK_UPTO(ASL_LEVEL_DEBUG));
+#endif
+
+	asl_log(client, NULL, ASL_LEVEL_DEBUG, "Here comes the init().");
 }
 
 HTMLFormatter::HTMLFormatter() : m_isSkinChanged(true), m_isThumbnail(false)
@@ -58,7 +67,7 @@ HTMLFormatter::HTMLFormatter(const CFURLRef url) : m_isSkinChanged(true), m_isTh
 	
 HTMLFormatter::~HTMLFormatter()
 {
-	asl_log(client, NULL, ASL_LEVEL_NOTICE, "destruction!");
+	asl_log(client, NULL, ASL_LEVEL_DEBUG, "destruction!");
 	CFRelease(m_htmlString);
 	CFRelease(header);
 	CFRelease(title);
@@ -77,6 +86,7 @@ HTMLFormatter::~HTMLFormatter()
 	//	asl_free(msg);
 }
 
+// sevenfour スキームを cid スキームに変換
 void HTMLFormatter::sevenfourTOCid(CFMutableStringRef& tmp)
 {
 	CFArrayRef array;
@@ -84,7 +94,7 @@ void HTMLFormatter::sevenfourTOCid(CFMutableStringRef& tmp)
 	CFIndex previousLength = 0;
 	CFMutableStringRef script = CFStringCreateMutable(kCFAllocatorDefault, 0);
 	CFCharacterSetRef characterSet = CFCharacterSetCreateWithCharactersInString(kCFAllocatorDefault, CFSTR("\") '"));
-	fprintf(stderr, "sevenfour:// -> cid:\n");
+	asl_log(client, NULL, ASL_LEVEL_DEBUG, "sevenfour:// -> cid:\n");
 	
 	array = CFStringCreateArrayWithFindResults(kCFAllocatorDefault, tmp, CFSTR("sevenfour://skin"), CFRangeMake(0, CFStringGetLength(tmp)), 0);
 	
@@ -116,9 +126,8 @@ void HTMLFormatter::sevenfourTOCid(CFMutableStringRef& tmp)
 			previousLength += CFStringGetLength(sevenfourURLString) - CFStringGetLength(cid);
 			//			NSLog(@"%@ %d", cid, previousLength);
 			
-#ifdef DEBUG
-//			asl_log(client, NULL, ASL_LEVEL_NOTICE, "Load resource \nPATH:%s UTI:%s MIME:%s\nFILENAME:%s", [path UTF8String], [uti UTF8String], [mime UTF8String], [fileName UTF8String]);
-#endif		
+//			asl_log(client, NULL, ASL_LEVEL_DEBUG, "Load resource \nPATH:%s UTI:%s MIME:%s\nFILENAME:%s", [path UTF8String], [uti UTF8String], [mime UTF8String], [fileName UTF8String]);
+		
 			if (CFEqual(extension, CFSTR("css"))) {
 				CFStringRef string = CFStringCreateWithBytes(kCFAllocatorDefault, CFDataGetBytePtr(data), CFDataGetLength(data), kCFStringEncodingUTF8, false);
 				CFMutableStringRef recursiveTmp = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, string);
