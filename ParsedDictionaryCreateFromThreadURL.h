@@ -15,7 +15,7 @@ extern "C" {
 
 // threadファイルからCFDictionaryRefを作る。
 	
-CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url);
+CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url) __attribute__((nonnull));
 
 #ifdef __cplusplus
 }

@@ -15,7 +15,7 @@ extern "C" {
 
 // datファイルをパースしてCFDictionaryRefを返す
 
-CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url);
+CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url) __attribute__((nonnull));
 
 #ifdef __cplusplus
 }
