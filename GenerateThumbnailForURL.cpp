@@ -2,6 +2,7 @@
 // #import <WebKit/WebKit.h>
 #include "common.h"
 #include "HTMLFormatter.h"
+#include "MyCFUtilities.h"
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,6 +1,7 @@
 #include <QuickLook/QuickLook.h>
 #include "common.h"
 #include "HTMLFormatter.h"
+#include "MyCFUtilities.h"
 
 /* -----------------------------------------------------------------------------
    Generate a preview for file

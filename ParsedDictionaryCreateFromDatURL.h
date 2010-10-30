@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef __PARSED_DICTIONARY_CREATE_FROM_DAT_URL_H__
+#define __PARSED_DICTIONARY_CREATE_FROM_DAT_URL_H__
+
 #include "common.h"
 
 #ifdef __cplusplus
@@ -20,3 +23,5 @@ CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url) __attribute__((no
 #ifdef __cplusplus
 }
 #endif
+
+#endif // __PARSED_DICTIONARY_CREATE_FROM_DAT_URL_H__

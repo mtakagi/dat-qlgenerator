@@ -15,8 +15,6 @@
 #include <asl.h>
 #include <mach/mach_time.h>
 
-#include "MyCFUtilities.h"
-
 #ifdef __OBJC__
 #include <Foundation/Foundation.h>
 #endif
