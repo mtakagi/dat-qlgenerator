@@ -112,8 +112,11 @@ static CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 		CFStringRef id = CFArrayGetValueAtIndex(idAndBE, 0);
 		
 		if (CFArrayGetCount(idAndBE) == 2) {
+			// BE:~ を '-' で分割。
+			CFArrayRef be = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, CFArrayGetValueAtIndex(idAndBE, 1), CFSTR("-"));
 			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(idAndBE, 0)); // ID をセット
-			CFDictionarySetValue(resDictionary, k2ChMessageBe, CFArrayGetValueAtIndex(idAndBE, 1)); // Be をセット
+			CFDictionarySetValue(resDictionary, k2ChMessageBe, be); // Be をセット
+			CFRelease(be);
 		} else {
 			CFDictionarySetValue(resDictionary, k2ChMessageID, CFArrayGetValueAtIndex(dateAndID, 1)); // ID のみをセット
 		}
