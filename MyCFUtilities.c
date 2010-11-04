@@ -42,12 +42,24 @@ CFStringRef CreateFileNameFromURLWithExtension(CFURLRef url, CFStringRef extensi
 CFDataRef CreateDataFromString(CFStringRef string)
 {
 	CFDataRef data;
-	CFIndex index = CFStringGetLength(string);
-	UInt8 *bytes = (UInt8 *)malloc(sizeof(UInt8) * index);
+	CFIndex length = CFStringGetLength(string);
+	CFIndex usedBufferLength = 0;
+	UInt8 *bytes;
 	
-	CFStringGetBytes(string, CFRangeMake(0, index), kCFStringEncodingUTF8, 0, false, bytes, index, NULL);
-	data = CFDataCreate(kCFAllocatorDefault, bytes, index);
+	// 必要なバッファのサイズを調べ、 usedBufferLength 分メモリを bytes に確保する。
+	CFStringGetBytes(string, CFRangeMake(0, length), kCFStringEncodingUTF8, 0, false, NULL, length, &usedBufferLength);
+	bytes = (UInt8 *)malloc(sizeof(UInt8) * usedBufferLength);
+	CFStringGetBytes(string, CFRangeMake(0, length), kCFStringEncodingUTF8, 0, false, bytes, usedBufferLength, NULL);
 	
+	data = CFDataCreate(kCFAllocatorDefault, bytes, usedBufferLength);
+
+#ifdef DEBUG // UInt8 に変換した CFStringRef を元の string と比較するため。
+//	CFStringRef test = CFStringCreateWithBytes(kCFAllocatorDefault, bytes, length, kCFStringEncodingUTF8, false);
+//	CFShowStr(string);
+//	CFShowStr(test);
+//	fprintf(stderr, "Length %ld used buffer length %ld\n", length, usedBufferLength);
+//	CFRelease(test);
+#endif	
 	free(bytes);
 	
 	return data;
