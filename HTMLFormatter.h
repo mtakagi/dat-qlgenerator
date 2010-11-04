@@ -29,6 +29,8 @@ protected:
 	
 	static CFMutableCharacterSetRef aaCharacterSet; // AAの判定に使用するキャラクタセット
 	static const CFCharacterSetRef multiByteWhiteSpaceCharacterSet; // 全角スペース
+	
+	static const CFStringRef beLinkFormat; // be のプロフィールへのリンクの雛形
 
 // メンバ関数
 public:	

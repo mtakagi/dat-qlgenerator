@@ -24,6 +24,8 @@ const CFURLRef HTMLFormatter::skinFolderURL = CFURLCreateCopyAppendingPathCompon
 const CFCharacterSetRef HTMLFormatter::multiByteWhiteSpaceCharacterSet = CFCharacterSetCreateWithCharactersInRange(kCFAllocatorDefault, CFRangeMake(12288, 1));
 CFMutableCharacterSetRef HTMLFormatter::aaCharacterSet = CFCharacterSetCreateMutable(kCFAllocatorDefault);
 
+const CFStringRef HTMLFormatter::beLinkFormat = CFSTR("<a href='http://be.2ch.net/test/p.php?i=%@'>?%@</a>");
+
 #pragma mark -
 #pragma mark Initializer and Contructor, Deconstructor
 void HTMLFormatter::init()
@@ -521,7 +523,7 @@ CFStringRef HTMLFormatter::formatBody()
 			break;
 		}
 		CFDictionaryRef datDictionary = (CFDictionaryRef)CFArrayGetValueAtIndex(datArray(), index);
-		CFMutableStringRef tmp;
+		CFMutableStringRef tmp = NULL;
 		CFMutableStringRef message = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageBody));
 		CFStringRef plainID;
 		CFStringRef plainNumber = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("%d"), index + 1);
@@ -550,6 +552,8 @@ CFStringRef HTMLFormatter::formatBody()
 			tmp = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, res);
 		}
 		
+		assert(tmp != NULL);
+		
 		// <PLAINNUMBER/> <NUMBER/> 置き換え。
 		CFStringFindAndReplace(tmp, CFSTR("<PLAINNUMBER/>"), plainNumber, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 		CFStringFindAndReplace(tmp, CFSTR("<NUMBER/>"), number, CFRangeMake(0, CFStringGetLength(tmp)), 0);
@@ -567,7 +571,6 @@ CFStringRef HTMLFormatter::formatBody()
 			CFStringFindAndReplace(tmp, CFSTR("<MAILNAME/>"), mailName, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFStringFindAndReplace(tmp, CFSTR("<MAIL/>"), (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageMail), CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFRelease(mailName);
-			
 		}
 		
 		// <USERID/> <PLAINID/> の置き換え。 k2ChMessageID が存在しなければ ID は ??? になる。
@@ -595,16 +598,21 @@ CFStringRef HTMLFormatter::formatBody()
 			CFRelease(date);
 		}
 		
-		CFStringRef be = NULL;
-		if (CFDictionaryGetValueIfPresent(datDictionary, (void *)k2ChMessageBe, (const void **)&be)) {
-			asl_log(client, NULL, ASL_LEVEL_INFO, "%s", CFStringGetCStringPtr(be, kCFStringEncodingUTF8));
-		}
-		
 		CFStringFindAndReplace(tmp, CFSTR("<USERID/>"), plainID, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 		CFStringFindAndReplace(tmp, CFSTR("<COUNTOFID/>"), countOfIDString, CFRangeMake(0, CFStringGetLength(tmp)), 0);
+		
+		// <BE/> の置き換え。
+		CFArrayRef be = NULL;
+		if (CFDictionaryGetValueIfPresent(datDictionary, (void *)k2ChMessageBe, (const void **)&be)) {
+			CFStringRef beLink = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, beLinkFormat,
+														  CFArrayGetValueAtIndex(be, 0), CFArrayGetValueAtIndex(be, 1));
+			CFStringFindAndReplace(tmp, CFSTR("<BE/>"), beLink, CFRangeMake(0, CFStringGetLength(tmp)), 0);
+			CFRelease(beLink);
+		} else {
+			CFStringFindAndReplace(tmp, CFSTR("<BE/>"), CFSTR(""), CFRangeMake(0, CFStringGetLength(tmp)), 0);
+		}
+		
 		CFStringFindAndReplace(tmp, CFSTR("<MESSAGE/>"), message, CFRangeMake(0, CFStringGetLength(tmp)), 0);
-//		NSLog(@"%@", [self countID]);
-//		CFShow(tmp);
 		
 		CFStringAppend(body, tmp);
 		CFStringAppend(body, CFSTR("</div>"));
@@ -622,9 +630,10 @@ CFStringRef HTMLFormatter::formatBody()
 
 #pragma mark -
 #pragma mark Getter
+
 CFStringRef HTMLFormatter::htmlString()
 {
-	fprintf(stderr, "start htmlString()\n");
+//	fprintf(stderr, "start htmlString()\n");
 	CFStringRef headerHTML = formatHEADER(header);
 	CFStringRef titleHTML = formatTITLE(title);
 	CFStringRef body = formatBody();
