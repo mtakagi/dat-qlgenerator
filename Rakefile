@@ -1,3 +1,8 @@
+require 'rake/clean'
+
+# rake clean で build ディレクトリ以下を削除
+CLEAN.include("build")
+
 desc "Install plugin"
 
 task :install do
