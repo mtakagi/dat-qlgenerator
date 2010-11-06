@@ -342,6 +342,7 @@ CFStringRef HTMLFormatter::formatTITLE(const CFStringRef& titleHTML)
 	CFMutableStringRef tmp = CFStringCreateMutableCopy(kCFAllocatorDefault, 0, titleHTML);
 	CFStringRef urlString = CFURLCopyPath(datURL);
 	CFStringFindAndReplace(tmp, CFSTR("<THREADNAME/>"), threadTitle(), CFRangeMake(0, CFStringGetLength(tmp)), 0);
+	CFStringFindAndReplace(tmp, CFSTR("<BOARDNAME/>"), boardName(), CFRangeMake(0, CFStringGetLength(tmp)), 0); // from BathyScaphe port
 	CFStringFindAndReplace(tmp, CFSTR("<THREADURL/>"), urlString, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 	CFRelease(urlString);
 //	CFShow(tmp);

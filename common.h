@@ -21,7 +21,6 @@
 
 
 // SevenFourからもってきた。.thread互換用途に中身を入れ替えてある。
-// TODO: Beに対応していない。
 #define k2ChMessageName CFSTR("Name")
 #define k2ChMessageMail CFSTR("Mail")
 #define k2ChMessageBody CFSTR("Message")
@@ -29,6 +28,7 @@
 #define k2ChMessageID   CFSTR("ID")
 #define k2ChMessageBe   CFSTR("BeProfileLink")
 #define k2ChMessageThreadSubject CFSTR("Title")
+#define k2chMessageBoardName CFSTR("BoardName") // from BathyScaphe port
 
 #define ID_COUNT_DICTIONARY CFSTR("IDCountDictionary")
 #define RES_DICTIONARY_ARRAY CFSTR("ResDictionaryArray")

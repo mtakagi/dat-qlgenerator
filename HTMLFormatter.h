@@ -60,6 +60,8 @@ private:
 	CFArrayRef datArray() const { return (CFArrayRef)CFDictionaryGetValue(parsedDictionary, RES_DICTIONARY_ARRAY); };
 	CFDictionaryRef countIDDictionary() const { return (CFDictionaryRef)CFDictionaryGetValue(parsedDictionary,ID_COUNT_DICTIONARY); };
 	CFStringRef createStringFromURLWithFile(const CFURLRef url, const CFStringRef file);
+	// 板名を返す
+	CFStringRef boardName() const { return (CFStringRef)CFDictionaryGetValue(parsedDictionary, CFSTR("BoardName")); };
 
 protected:
 	bool isAsciiArt(const CFStringRef& message); // AAかどうか判定する。

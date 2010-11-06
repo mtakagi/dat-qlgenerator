@@ -49,6 +49,7 @@ CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url)
 	CFMutableDictionaryRef idDictionary; // thread ファイルに含まれる ID の情報。
 	CFMutableArrayRef resDictionaryArray; // 書き込みを持つ配列。
 	CFArrayRef contents; // thread ファイルの contents を入れる配列。
+	CFStringRef boardName; // 板名 from BathyScaphe port
 	CFIndex i;
 	
 	thread = DictionaryCreateFromURL(url);
@@ -59,6 +60,8 @@ CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url)
 	idDictionary = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
 	resDictionaryArray = CFArrayCreateMutable(kCFAllocatorDefault, 1001, &kCFTypeArrayCallBacks);
 	contents = CFDictionaryGetValue(thread, CFSTR("Contents"));
+	boardName = CFDictionaryGetValue(thread, CFSTR("BoardName"));
+    CFRetain(boardName);
 	
 	// content から必要な情報を取り出して resDictionaryArray に格納。
 	for (i = 0; i < CFArrayGetCount(contents); i++) {
@@ -101,6 +104,8 @@ CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url)
 	
 	CFDictionarySetValue(threadDictinary, RES_DICTIONARY_ARRAY, resDictionaryArray);
 	CFDictionarySetValue(threadDictinary, ID_COUNT_DICTIONARY, idDictionary);
+	CFDictionarySetValue(threadDictinary, CFSTR("BoardName"), boardName);
+    CFRelease(boardName);
 	
 	// dealloc
 	CFRelease(thread);
