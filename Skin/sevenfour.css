@@ -30,6 +30,9 @@ a:active {
 a:visited {
   color: #609;
 }
+a.name {
+	font-weight: bold;
+}
 a[href^="sevenfour://internal/"] {
   color: black;
   text-decoration: none;

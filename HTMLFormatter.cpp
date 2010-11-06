@@ -561,14 +561,16 @@ CFStringRef HTMLFormatter::formatBody()
 
 		// <MAILNAME/> <MAIL/> の置き換え。 k2chMessageMail が存在するかどうかで切り分け
 		if (CFEqual((CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageMail), CFSTR(""))) {
-			CFStringRef mailName = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("<a class='name' href='mailto:'><b>%@</b></a>"), (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageName));
+			// <b></b>を削除した。
+			CFStringRef mailName = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("<a class='name' href='mailto:'>%@</a>"), (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageName));
 			CFStringFindAndReplace(tmp, CFSTR("<MAILNAME/>"), mailName, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFStringFindAndReplace(tmp, CFSTR("<MAIL/>"), (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageMail), CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFRelease(mailName);
 		} else {
 			CFStringRef messageName = (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageName);
 			CFStringRef messageMail = (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageMail);
-			CFStringRef mailName = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("<a class='name' href='mailto:%@' title='%@'><b>%@</b></a>"), messageMail, messageMail, messageName);
+			// <b></b>を削除した。
+			CFStringRef mailName = CFStringCreateWithFormat(kCFAllocatorDefault, NULL, CFSTR("<a class='name' href='mailto:%@' title='%@'>%@</a>"), messageMail, messageMail, messageName);
 			CFStringFindAndReplace(tmp, CFSTR("<MAILNAME/>"), mailName, CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFStringFindAndReplace(tmp, CFSTR("<MAIL/>"), (CFStringRef)CFDictionaryGetValue(datDictionary, (void *)k2ChMessageMail), CFRangeMake(0, CFStringGetLength(tmp)), 0);
 			CFRelease(mailName);
