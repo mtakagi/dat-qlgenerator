@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+body {
+  background: #ffffff;
+  color: black;
+  
+  font: normal 13px 'Lucida Grande';
+
+  margin: 0;
+  padding: 1%;
+
+  word-wrap: break-word;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 110%;
+  color: #ffffff;
+  margin-top: 24px;
+}
+
+a:link {
+  color: #4d00fe;
+}
+a:active {
+  color: red;
+}
+a:visited {
+  color: #609;
+}
+a[href^="sevenfour://internal/"] {
+  color: black;
+  text-decoration: none;
+}
+
+dt {
+  padding: 5px;
+}
+#new dt {
+  background: #fff;
+}
+
+dd {
+  line-height: 150%;
+  padding-bottom: 10pt;
+}
+div.text-art dd {
+  font-family: 'MS PGothic', 'IPAMonaPGothic', 'Mona';
+  line-height: 100%;
+}
+
+dd img {
+  margin: 1%;
+  vertical-align: middle;
+  display: block;
+  border: 1px solid #666;
+}
+img.thumbnail {
+  height: 100px;
+}
+img.zoom {
+  width: 95%;
+}
+img.actual {
+  ;
+}
+#control {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 24px;
+  width: 100%;
+  
+  background: url(sevenfour://skin/control.png) repeat-x;
+  padding: 1px 2%;
+  font: normal 90% 'Lucida Grande';
+
+  text-align: right;
+}  
+
+#control a:link, #control a:active, #control a:visited, #control a:hover {
+  color: #ffffff;
+  padding: 0 0 0 5%;
+  text-decoration: none;
+}
+
+.number {
+	color: #000;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a.number {
+	color: #a9a9a9;
+}
+
+.name {
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a.name {
+	color: #37af00;
+}
+
+b.name {
+	font-weight: normal;
+}
+
+span.mail {
+	color: #a9a9a9;
+	font-weight: normal;
+}
+
+span.date {
+	color: #a9a9a9;
+	font-weight: normal;
+}
+
+span.id {
+	color: #a9a9a9;
+	font-weight: normal;
+}
+
+dt {
+	font-family: "Lucida Grande";
+	font-weight: bold;
+	color: #896bfe;
+}
