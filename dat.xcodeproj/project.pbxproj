@@ -51,15 +51,6 @@
 		650FF21A1274278A008B8648 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F28CFC020A3EC0C6000ABFF5 /* QuickLook.framework */; };
 		6546262A127A7AB8001EFDE8 /* MyCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 65462629127A75C9001EFDE8 /* MyCFUtilities.c */; };
 		6546262B127A7ABE001EFDE8 /* MyCFUtilities.c in Sources */ = {isa = PBXBuildFile; fileRef = 65462629127A75C9001EFDE8 /* MyCFUtilities.c */; };
-		658A0575128316BA00E291C5 /* MyCFTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 658A0574128316BA00E291C5 /* MyCFTest.cpp */; };
-		65B09A8012CB768D0091B241 /* control.png in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6212CB768D0091B241 /* control.png */; };
-		65B09A8112CB768D0091B241 /* Header.html in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6312CB768D0091B241 /* Header.html */; };
-		65B09A8212CB768D0091B241 /* NewRes.html in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6412CB768D0091B241 /* NewRes.html */; };
-		65B09A8312CB768D0091B241 /* prototype.js in Sources */ = {isa = PBXBuildFile; fileRef = 65B09A6512CB768D0091B241 /* prototype.js */; };
-		65B09A8412CB768D0091B241 /* Res.html in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6612CB768D0091B241 /* Res.html */; };
-		65B09A8512CB768D0091B241 /* sevenfour.css in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6712CB768D0091B241 /* sevenfour.css */; };
-		65B09A8612CB768D0091B241 /* sevenfour.js in Sources */ = {isa = PBXBuildFile; fileRef = 65B09A6812CB768D0091B241 /* sevenfour.js */; };
-		65B09A8712CB768D0091B241 /* Title.html in Resources */ = {isa = PBXBuildFile; fileRef = 65B09A6912CB768D0091B241 /* Title.html */; };
 		65B09A8912CB79000091B241 /* control.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65B09A6212CB768D0091B241 /* control.png */; };
 		65B09A8A12CB79000091B241 /* Header.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65B09A6312CB768D0091B241 /* Header.html */; };
 		65B09A8B12CB79000091B241 /* NewRes.html in CopyFiles */ = {isa = PBXBuildFile; fileRef = 65B09A6412CB768D0091B241 /* NewRes.html */; };
@@ -92,20 +83,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		650FF28812747E31008B8648 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 650FF2001274278A008B8648;
-			remoteInfo = "Build for BathyScaphe";
-		};
-		658A056A1282FFDA00E291C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D57630D048677EA00EA77CD;
-			remoteInfo = dat;
-		};
-		658A056C1282FFDA00E291C5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 089C1669FE841209C02AAC07 /* Project object */;
 			proxyType = 1;
@@ -169,10 +146,6 @@
 		650FF31D12759F9A008B8648 /* Rakefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Rakefile; sourceTree = "<group>"; };
 		65462628127A75C9001EFDE8 /* MyCFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCFUtilities.h; sourceTree = "<group>"; };
 		65462629127A75C9001EFDE8 /* MyCFUtilities.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = MyCFUtilities.c; sourceTree = "<group>"; };
-		658A05611282D36D00E291C5 /* MyCFTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCFTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		658A05621282D36D00E291C5 /* MyCFTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MyCFTest-Info.plist"; sourceTree = "<group>"; };
-		658A0573128316BA00E291C5 /* MyCFTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCFTest.h; sourceTree = "<group>"; };
-		658A0574128316BA00E291C5 /* MyCFTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MyCFTest.cpp; sourceTree = "<group>"; };
 		65B09A6212CB768D0091B241 /* control.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = control.png; sourceTree = "<group>"; };
 		65B09A6312CB768D0091B241 /* Header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Header.html; sourceTree = "<group>"; };
 		65B09A6412CB768D0091B241 /* NewRes.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NewRes.html; sourceTree = "<group>"; };
@@ -219,13 +192,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		658A055E1282D36D00E291C5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D576313048677EA00EA77CD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -247,7 +213,6 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB6FE9D52B211CA2CBB /* Products */,
-				658A05701283168500E291C5 /* Unit Test */,
 				650FF31D12759F9A008B8648 /* Rakefile */,
 			);
 			name = dat;
@@ -295,7 +260,6 @@
 			children = (
 				8D576316048677EA00EA77CD /* dat.qlgenerator */,
 				650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */,
-				658A05611282D36D00E291C5 /* MyCFTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,16 +271,6 @@
 				65462628127A75C9001EFDE8 /* MyCFUtilities.h */,
 			);
 			name = Others;
-			sourceTree = "<group>";
-		};
-		658A05701283168500E291C5 /* Unit Test */ = {
-			isa = PBXGroup;
-			children = (
-				658A05621282D36D00E291C5 /* MyCFTest-Info.plist */,
-				658A0573128316BA00E291C5 /* MyCFTest.h */,
-				658A0574128316BA00E291C5 /* MyCFTest.cpp */,
-			);
-			name = "Unit Test";
 			sourceTree = "<group>";
 		};
 		65B09A4712CB768D0091B241 /* Skin_bathyscaphe */ = {
@@ -421,26 +375,6 @@
 			productReference = 650FF2201274278A008B8648 /* BathyScaphe.qlgenerator */;
 			productType = "com.apple.product-type.bundle";
 		};
-		658A05601282D36D00E291C5 /* MyCFTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 658A05651282D36E00E291C5 /* Build configuration list for PBXNativeTarget "MyCFTest" */;
-			buildPhases = (
-				658A055C1282D36D00E291C5 /* Resources */,
-				658A055D1282D36D00E291C5 /* Sources */,
-				658A055E1282D36D00E291C5 /* Frameworks */,
-				658A055F1282D36D00E291C5 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				658A056B1282FFDA00E291C5 /* PBXTargetDependency */,
-				658A056D1282FFDA00E291C5 /* PBXTargetDependency */,
-			);
-			name = MyCFTest;
-			productName = MyCFTest;
-			productReference = 658A05611282D36D00E291C5 /* MyCFTest.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 		8D57630D048677EA00EA77CD /* dat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2CA3261E0896AD4900168862 /* Build configuration list for PBXNativeTarget "dat" */;
@@ -487,7 +421,6 @@
 				650FF2001274278A008B8648 /* Build for BathyScaphe */,
 				65910BB8125C9F58007D6C5E /* Install plugin for user */,
 				650FF28512747E2C008B8648 /* Installer for BS */,
-				658A05601282D36D00E291C5 /* MyCFTest */,
 			);
 		};
 /* End PBXProject section */
@@ -500,19 +433,6 @@
 				650FF2021274278A008B8648 /* InfoPlist.strings in Resources */,
 				650FF2031274278A008B8648 /* license.txt in Resources */,
 				650FF2041274278A008B8648 /* readme.txt in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		658A055C1282D36D00E291C5 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				65B09A8012CB768D0091B241 /* control.png in Resources */,
-				65B09A8112CB768D0091B241 /* Header.html in Resources */,
-				65B09A8212CB768D0091B241 /* NewRes.html in Resources */,
-				65B09A8412CB768D0091B241 /* Res.html in Resources */,
-				65B09A8512CB768D0091B241 /* sevenfour.css in Resources */,
-				65B09A8712CB768D0091B241 /* Title.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,19 +479,6 @@
 			shellPath = /bin/sh;
 			shellScript = "rm -Rf \"$HOME/Library/Quicklook/BathyScaphe.qlgenerator\"\ncp -R \"$BUILT_PRODUCTS_DIR/BathyScaphe.qlgenerator\" \"$HOME/Library/Quicklook/BathyScaphe.qlgenerator\"\nexit 0\n";
 		};
-		658A055F1282D36D00E291C5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
 		65910BB7125C9F58007D6C5E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -602,16 +509,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		658A055D1282D36D00E291C5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				658A0575128316BA00E291C5 /* MyCFTest.cpp in Sources */,
-				65B09A8312CB768D0091B241 /* prototype.js in Sources */,
-				65B09A8612CB768D0091B241 /* sevenfour.js in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		8D576311048677EA00EA77CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -634,16 +531,6 @@
 			isa = PBXTargetDependency;
 			target = 650FF2001274278A008B8648 /* Build for BathyScaphe */;
 			targetProxy = 650FF28812747E31008B8648 /* PBXContainerItemProxy */;
-		};
-		658A056B1282FFDA00E291C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D57630D048677EA00EA77CD /* dat */;
-			targetProxy = 658A056A1282FFDA00E291C5 /* PBXContainerItemProxy */;
-		};
-		658A056D1282FFDA00E291C5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 650FF2001274278A008B8648 /* Build for BathyScaphe */;
-			targetProxy = 658A056C1282FFDA00E291C5 /* PBXContainerItemProxy */;
 		};
 		65910BBD125C9F82007D6C5E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -794,60 +681,6 @@
 			};
 			name = Release;
 		};
-		658A05631282D36E00E291C5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "MyCFTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = MyCFTest;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		658A05641282D36E00E291C5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				INFOPLIST_FILE = "MyCFTest-Info.plist";
-				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Cocoa,
-					"-framework",
-					SenTestingKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = MyCFTest;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = Release;
-		};
 		65910BB9125C9F58007D6C5E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -904,15 +737,6 @@
 			buildConfigurations = (
 				650FF28612747E2C008B8648 /* Debug */,
 				650FF28712747E2C008B8648 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		658A05651282D36E00E291C5 /* Build configuration list for PBXNativeTarget "MyCFTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				658A05631282D36E00E291C5 /* Debug */,
-				658A05641282D36E00E291C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
