@@ -15,7 +15,9 @@
 extern "C" {
 #endif
 
-CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStringRef htmlString);
+// Based on Quick Look Mailing list and other open source project.
+	
+CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStringRef htmlString, CGSize maxSize);
 
 #ifdef __cplusplus
 }
