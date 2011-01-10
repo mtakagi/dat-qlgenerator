@@ -63,6 +63,8 @@
 		65B09C2112D744E70091B241 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B09C2012D744E70091B241 /* WebKit.framework */; };
 		65B09CD112D7450B0091B241 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65B09CD012D7450B0091B241 /* Cocoa.framework */; };
 		65B09CF812D75CD50091B241 /* CreateTumbnailFromWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B09C0112D73A9A0091B241 /* CreateTumbnailFromWebView.m */; };
+		65B09D4212D9DFF90091B241 /* StandardHTMLFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B09D4012D9DFF90091B241 /* StandardHTMLFormatter.cpp */; };
+		65B09D4312D9DFF90091B241 /* StandardHTMLFormatter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 65B09D4012D9DFF90091B241 /* StandardHTMLFormatter.cpp */; };
 		8D576312048677EA00EA77CD /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 08FB77B6FE84183AC02AAC07 /* main.c */; settings = {ATTRIBUTES = (); }; };
 		8D576314048677EA00EA77CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AA1909FFE8422F4C02AAC07 /* CoreFoundation.framework */; };
 		8D5B49A804867FD3000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8D5B49A704867FD3000E48DA /* InfoPlist.strings */; };
@@ -162,6 +164,8 @@
 		65B09C0112D73A9A0091B241 /* CreateTumbnailFromWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTumbnailFromWebView.m; sourceTree = "<group>"; };
 		65B09C2012D744E70091B241 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		65B09CD012D7450B0091B241 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		65B09D4012D9DFF90091B241 /* StandardHTMLFormatter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StandardHTMLFormatter.cpp; sourceTree = "<group>"; };
+		65B09D4112D9DFF90091B241 /* StandardHTMLFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StandardHTMLFormatter.h; sourceTree = "<group>"; };
 		8D576316048677EA00EA77CD /* dat.qlgenerator */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dat.qlgenerator; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE28203F0FBB0B5000EDA54A /* guess.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = guess.c; sourceTree = "<group>"; };
 		AE2820400FBB0B5000EDA54A /* guess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = guess.h; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 		AEAA1CAA1153DBE400462942 /* HTMLFormatter */ = {
 			isa = PBXGroup;
 			children = (
+				65B09D4012D9DFF90091B241 /* StandardHTMLFormatter.cpp */,
+				65B09D4112D9DFF90091B241 /* StandardHTMLFormatter.h */,
 				AEAA1CA61153DBC900462942 /* HTMLFormatter.h */,
 				AEAA1CA71153DBC900462942 /* HTMLFormatter.cpp */,
 			);
@@ -521,6 +527,7 @@
 				650FF2141274278A008B8648 /* ParsedDictionaryCreateFromThreadURL.c in Sources */,
 				650FF2151274278A008B8648 /* HTMLFormatter.cpp in Sources */,
 				65B09C0212D73A9A0091B241 /* CreateTumbnailFromWebView.m in Sources */,
+				65B09D4212D9DFF90091B241 /* StandardHTMLFormatter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +544,7 @@
 				AED2AEAF114769B800F0E776 /* ParsedDictionaryCreateFromThreadURL.c in Sources */,
 				AEAA1CA81153DBCA00462942 /* HTMLFormatter.cpp in Sources */,
 				65B09CF812D75CD50091B241 /* CreateTumbnailFromWebView.m in Sources */,
+				65B09D4312D9DFF90091B241 /* StandardHTMLFormatter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +621,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_PREPROCESS = YES;
 				INSTALL_PATH = "$(HOME)/Library/QuickLook/";

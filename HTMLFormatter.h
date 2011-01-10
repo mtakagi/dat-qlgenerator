@@ -6,12 +6,13 @@ class HTMLFormatter {
 private:
 	aslclient client; // ASL ログ出力用
 	uint64_t start; // 開始した時間
-	CFMutableStringRef header; // スキンの header.html
-	CFMutableStringRef title; // スインの title.html
 	CFStringRef res; // スキンの res.html mutable copy して使用。
 	CFStringRef newRes; // スキンの newRes.html mutable copy して使用。
 	
 protected:
+	CFMutableStringRef header; // スキンの header.html
+	CFMutableStringRef title; // スインの title.html
+
 	CFURLRef datURL; // html にするファイルの URL
 	CFMutableStringRef m_htmlString; // 変換した html
 	CFMutableDictionaryRef m_attachmentDictionary; // 変換した html が 読み込むスキンなどのリソース
@@ -50,8 +51,7 @@ public:
 	void setIsThumbnail(bool isThumbnail) { m_isThumbnail = isThumbnail; };
 	
 private:
-	void init(); // 初期化関数
-	void sevenfourTOCid(CFMutableStringRef& tmp);
+	virtual void sevenfourTOCid(CFMutableStringRef& tmp);
 	void sevenfourTOCID();
 	void formatSevenfourSupport(CFMutableStringRef& tmp);
 	CFStringRef formatHEADER(const CFStringRef& headerHTML);
@@ -64,6 +64,7 @@ private:
 	CFStringRef boardName() const { return (CFStringRef)CFDictionaryGetValue(parsedDictionary, CFSTR("BoardName")); };
 
 protected:
+	void init(); // 初期化関数
 	bool isAsciiArt(const CFStringRef& message); // AAかどうか判定する。
 };
 
