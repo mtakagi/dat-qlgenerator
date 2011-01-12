@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef __COMMON_H__
-#define __COMMON_H__
+#ifndef DAT_QUICKLOOK_PLUGIN_COMMON_H
+#define DAT_QUICKLOOK_PLUGIN_COMMON_H
 
 #include <CoreServices/CoreServices.h>
 #include <CoreFoundation/CoreFoundation.h>
@@ -57,4 +57,4 @@
 #define QLMANAGE CFSTR("qlmanage")
 #define QUICKLOOKD CFSTR("quicklookd")
 
-#endif // __COMMON_H__
+#endif // DAT_QUICKLOOK_PLUGIN_COMMON_H

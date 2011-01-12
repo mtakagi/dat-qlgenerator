@@ -1,5 +1,5 @@
-#ifndef __STANDARD_HTML_FORMATTER__
-#define __STANDARD_HTML_FORMATTER__
+#ifndef STANDARD_HTML_FORMATTER_H
+#define STANDARD_HTML_FORMATTER_H
 
 #include "HTMLFormatter.h"
 
@@ -14,4 +14,4 @@ private:
 	void sevenfourTOCid(CFMutableStringRef& tmp);
 };
 
-#endif // __STANDARD_HTML_FORMATTER__
+#endif // STANDARD_HTML_FORMATTER_H

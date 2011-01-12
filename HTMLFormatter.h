@@ -1,5 +1,5 @@
-#ifndef __HTML_FORMATTER__
-#define __HTML_FORMATTER__
+#ifndef HTML_FORMATTER_H
+#define HTML_FORMATTER_H
 
 #include <CoreFoundation/CoreFoundation.h>
 #include "common.h"
@@ -117,4 +117,4 @@ inline CFStringRef HTMLFormatter::createStringFromURLWithFile(const CFURLRef url
 	return string;
 }
 
-#endif // __HTML_FORMATTER__
+#endif // HTML_FORMATTER_H

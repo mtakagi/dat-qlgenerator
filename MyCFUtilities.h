@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef __MYCFUTILITIES_H__
-#define __MYCFUTILITIES_H__
+#ifndef MY_CF_UTILITIES_H
+#define MY_CF_UTILITIES_H
 
 #include <CoreFoundation/CoreFoundation.h>
 
@@ -37,4 +37,4 @@ CFStringRef CopyUppercaseExtenstionString(CFURLRef url) __attribute__((visibilit
 }
 #endif
 	
-#endif // __MYCFUTILITIES_H__
+#endif // MY_CF_UTILITIES_H

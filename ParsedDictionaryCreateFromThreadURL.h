@@ -7,8 +7,8 @@
  *
  */
 
-#ifndef __PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H__
-#define __PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H__
+#ifndef PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H
+#define PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H
 
 #include "common.h"
 
@@ -24,4 +24,4 @@ CFDictionaryRef ParsedDictionaryCreateFromThreadURL(CFURLRef url) __attribute__(
 }
 #endif
 
-#endif // __PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H__
+#endif // PARSED_DICTIONARY_CREATE_FROM_THREAD_URL_H
