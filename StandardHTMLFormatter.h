@@ -1,3 +1,6 @@
+#ifndef __STANDARD_HTML_FORMATTER__
+#define __STANDARD_HTML_FORMATTER__
+
 #include "HTMLFormatter.h"
 
 class StandardHTMLFormatter : public HTMLFormatter {
@@ -10,3 +13,5 @@ public:
 private:
 	void sevenfourTOCid(CFMutableStringRef& tmp);
 };
+
+#endif // __STANDARD_HTML_FORMATTER__

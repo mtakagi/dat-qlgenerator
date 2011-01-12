@@ -7,6 +7,9 @@
  *
  */
 
+#ifndef __CREATE_THUMBNAIL_FROM_WEBVIEW__
+#define __CREATE_THUMBNAIL_FROM_WEBVIEW__
+
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 #include <QuickLook/QuickLook.h>
@@ -22,3 +25,5 @@ CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStrin
 #ifdef __cplusplus
 }
 #endif
+
+#endif // __CREATE_THUMBNAIL_FROM_WEBVIEW__
