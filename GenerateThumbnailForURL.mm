@@ -71,7 +71,7 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 			
 			HTML = standardFormatter.htmlString();
 			asl_log(client, NULL, ASL_LEVEL_DEBUG, "CreateThumbnailFromWebView");
-			CGContextRef context = CreateThumbnailFromWebView(thumbnail, HTML, maxSize);
+			CGContextRef context = CreateThumbnailFromWebView(thumbnail, HTML);
 			QLThumbnailRequestFlushContext(thumbnail, context); 
 			CFRelease(context);
 			// デバッグ用途にhtmlに変換したデータをファイルに保存する。

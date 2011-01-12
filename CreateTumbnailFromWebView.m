@@ -7,11 +7,12 @@
  *
  */
 
-#include "CreateTumbnailFromWebView.h"
+#import "CreateTumbnailFromWebView.h"
 
-CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStringRef htmlString, CGSize maxSize)
+CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStringRef htmlString)
 {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	CGSize maxSize = QLThumbnailRequestGetMaximumSize(thumbnail);
 	NSRect frame = NSMakeRect(0.0, 0.0, 600.0, 800.0);
 	CGFloat scaleFactor = maxSize.height / 800.0;
 	NSSize size = NSMakeSize(scaleFactor, scaleFactor);
