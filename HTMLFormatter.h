@@ -41,6 +41,8 @@ public:
 	HTMLFormatter(); // コンストラクタ
 	HTMLFormatter(const CFURLRef url); // コンストラクタ
 	virtual ~HTMLFormatter(); // デコンストラクタ
+	HTMLFormatter(HTMLFormatter&); // コピーコンストラクタ
+	void operator = (HTMLFormatter&); // 
 	void setURL(const CFURLRef url); // setter 変換するファイルの URL をセット
 	void updateSkin(); // スキンをアップデート
 	void setIsThumbnail(); // setter サムネイルかどうかをセット ていうかなにこれ? 引数もないし…
