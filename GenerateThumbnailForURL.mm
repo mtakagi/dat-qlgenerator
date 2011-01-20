@@ -20,7 +20,6 @@ extern "C" {
 	
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
-	static HTMLFormatter formatter; // ファイルを変換するクラス
 	CFStringRef HTML; // 変換した HTML
 	aslclient client = asl_open(BUNDLE_IDENTIFIER_CSTRING, "Thumbnail", ASL_OPT_STDERR); // stderr に出力する。
 
@@ -28,15 +27,18 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 	asl_set_filter(client, ASL_FILTER_MASK_UPTO(ASL_LEVEL_DEBUG)); // デバッグビルド時はロギングするレベルを DEBUG からに変更
 #endif
 	
-	formatter.setIsThumbnail(true); // サムネイル表示に設定
-	formatter.setURL(url);
 	
-	HTML = formatter.htmlString();
 			
 	if (HTML != NULL && !QLThumbnailRequestIsCancelled(thumbnail)) {		
 #if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060) && !defined(DEBUG) // サムネイルの生成に 10.6 から追加されたキーと関数を使用する
 		
 		if (QLThumbnailRequestSetThumbnailWithDataRepresentation != NULL) {
+			static HTMLFormatter formatter; // ファイルを変換するクラス
+			formatter.setIsThumbnail(true); // サムネイル表示に設定
+			formatter.setURL(url);
+	
+			HTML = formatter.htmlString();
+			
 			CFDataRef data = CreateDataFromString(HTML);
 			CFDictionaryRef attachments = CFDictionaryCreate(kCFAllocatorDefault, (const void **)kQLPreviewPropertyAttachmentsKey, 
 															 (const void **)formatter.attachmentDictionary(), 1,
