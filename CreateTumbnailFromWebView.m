@@ -161,7 +161,7 @@ CGContextRef CreateThumbnailFromWebView(QLThumbnailRequestRef thumbnail, CFStrin
 // DEBUG ビルド時は qlmanage を使用した際にも拡張子名を描画する。
 #ifdef DEBUG
 	if (IsQLManage() || ThumbnailIsIconMode(thumbnail)) {
-#elif // リリースビルド時はアイコンを表示する時のみ拡張子名を描画。
+#else // リリースビルド時はアイコンを表示する時のみ拡張子名を描画。
 	if (ThumbnailIsIconMode(thumbnail)) {
 #endif
 		CGContextSaveGState(context);
