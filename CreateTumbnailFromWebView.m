@@ -7,6 +7,8 @@
  *
  */
 
+#import <Cocoa/Cocoa.h>
+#import <WebKit/WebKit.h>
 #import "CreateTumbnailFromWebView.h"
 #include "MyCFUtilities.h"
 #include "common.h"

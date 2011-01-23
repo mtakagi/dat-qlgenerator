@@ -10,8 +10,6 @@
 #ifndef CREATE_THUMBNAIL_FROM_WEBVIEW_H
 #define CREATE_THUMBNAIL_FROM_WEBVIEW_H
 
-#import <Cocoa/Cocoa.h>
-#import <WebKit/WebKit.h>
 #include <QuickLook/QuickLook.h>
 
 #ifdef __cplusplus
