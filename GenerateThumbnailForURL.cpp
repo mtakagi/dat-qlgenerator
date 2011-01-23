@@ -1,8 +1,10 @@
 #include <QuickLook/QuickLook.h>
 // #import <WebKit/WebKit.h>
 #include "common.h"
-#include "HTMLFormatter.h"
+//#include "HTMLFormatter.h"
+#include "StandardHTMLFormatter.h"
 #include "MyCFUtilities.h"
+#include "CreateTumbnailFromWebView.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -18,23 +20,25 @@ extern "C" {
 	
 OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thumbnail, CFURLRef url, CFStringRef contentTypeUTI, CFDictionaryRef options, CGSize maxSize)
 {
-	static HTMLFormatter formatter; // ファイルを変換するクラス
 	CFStringRef HTML; // 変換した HTML
 	aslclient client = asl_open(BUNDLE_IDENTIFIER_CSTRING, "Thumbnail", ASL_OPT_STDERR); // stderr に出力する。
 
 #ifdef DEBUG
-	asl_set_filter(client, ASL_FILTER_MASK_UPTO(ASL_LEVEL_DEBUG)); // デバッグビルド時はロッギングするレベルを DEBUG からに変更
+	asl_set_filter(client, ASL_FILTER_MASK_UPTO(ASL_LEVEL_DEBUG)); // デバッグビルド時はロギングするレベルを DEBUG からに変更
 #endif
 	
-	formatter.setIsThumbnail(true); // サムネイル表示に設定
-	formatter.setURL(url);
 	
-	HTML = formatter.htmlString();
 			
 	if (HTML != NULL && !QLThumbnailRequestIsCancelled(thumbnail)) {		
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060 // サムネイルの生成に 10.6 から追加されたキーと関数を使用する
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060) && !defined(DEBUG) // サムネイルの生成に 10.6 から追加されたキーと関数を使用する
 		
 		if (QLThumbnailRequestSetThumbnailWithDataRepresentation != NULL) {
+			static HTMLFormatter formatter; // ファイルを変換するクラス
+			formatter.setIsThumbnail(true); // サムネイル表示に設定
+			formatter.setURL(url);
+	
+			HTML = formatter.htmlString();
+			
 			CFDataRef data = CreateDataFromString(HTML);
 			CFDictionaryRef attachments = CFDictionaryCreate(kCFAllocatorDefault, (const void **)kQLPreviewPropertyAttachmentsKey, 
 															 (const void **)formatter.attachmentDictionary(), 1,
@@ -62,34 +66,24 @@ OSStatus GenerateThumbnailForURL(void *thisInterface, QLThumbnailRequestRef thum
 			CFRelease(attachments);
 			if (props != NULL) CFRelease(props);
 		} else {
-#endif
-#if 0 // 10.5 でのサムネイルの生成 未完成
-		NSRect frame = NSMakeRect(0.0, 0.0, 600.0, 800.0);
-		CGFloat scaleFactor = maxSize.height / 800.0;
-		NSSize size = NSMakeSize(scaleFactor, scaleFactor);
-		CGSize thumbnailSize = CGSizeMake(maxSize.width * (600.0 / 800.0), maxSize.height);
-		WebView* webView = [[[WebView alloc] initWithFrame:frame] autorelease]; 
-		
-		[webView scaleUnitSquareToSize:size];
-		[[[webView mainFrame] frameView] setAllowsScrolling:NO];
-		[[webView mainFrame] loadHTMLString:datHTML baseURL:nil]; 
-		
-		while([webView isLoading]) { 
-			CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0, true); 
-		} 
-		
-		CGContextRef context = QLThumbnailRequestCreateContext(thumbnail, thumbnailSize, false, 
-															   (CFDictionaryRef)props); 
-		if(context != NULL) { 
-			NSGraphicsContext* nsContext = [NSGraphicsContext graphicsContextWithGraphicsPort:(void *)context 
-																					  flipped:[webView isFlipped]]; 
-			[webView displayRectIgnoringOpacity:[webView bounds] inContext:nsContext]; 
+#endif // 10.5 でのサムネイルの生成 未完成 DEBUG が定義されている場合はこちらでサムネイルを生成する。
+			static StandardHTMLFormatter standardFormatter;
+			standardFormatter.setIsThumbnail(true); // サムネイル表示に設定
+			standardFormatter.setURL(url);
+			
+			HTML = standardFormatter.htmlString();
+			asl_log(client, NULL, ASL_LEVEL_DEBUG, "CreateThumbnailFromWebView");
+			CGContextRef context = CreateThumbnailFromWebView(thumbnail, HTML);
 			QLThumbnailRequestFlushContext(thumbnail, context); 
-			CFRelease(context); 
-		} 
+			CFRelease(context);
+			// デバッグ用途にhtmlに変換したデータをファイルに保存する。
+#ifdef DEBUG
+//			CFStringRef fileName = CreateFileNameFromURLWithExtension(url, CFSTR("html"));
+//			CFStringWriteToTemporary((CFStringRef)HTML, fileName);
+//			CFRelease(fileName);
 #endif
 // "if (QLThumbnailRequestSetThumbnailWithDataRepresentation != NULL) {" の "} else {" を閉じるため
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= 1060
+#if (MAC_OS_X_VERSION_MAX_ALLOWED >= 1060) && !defined(DEBUG)
 		}
 #endif
 	}
