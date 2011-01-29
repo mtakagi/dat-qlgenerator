@@ -45,13 +45,11 @@
 
 // テスト用途
 #define PRINT_ELAPSE(start, client, msg, format) {\
-   uint64_t end;\
-   uint64_t elapsed;\
-   Nanoseconds elapsedNano;\
-   end = mach_absolute_time();\
+   CFAbsoluteTime end;\
+   CFAbsoluteTime elapsed;\
+   end = CFAbsoluteTimeGetCurrent();\
    elapsed = end - start;\
-   elapsedNano = AbsoluteToNanoseconds(*(AbsoluteTime *)&elapsed);\
-   asl_log(client, msg, ASL_LEVEL_NOTICE, format, *(uint64_t *)&elapsedNano/1000000000.0);\
+   asl_log(client, msg, ASL_LEVEL_NOTICE, format, elapsed);\
 };
 
 #define QLMANAGE CFSTR("qlmanage")

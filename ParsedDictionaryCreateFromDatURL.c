@@ -167,7 +167,7 @@ CFDictionaryRef ParsedDictionaryCreateFromDatURL(CFURLRef url)
 	client = asl_open("Parsing Dat", NULL, ASL_OPT_STDERR);
 	aslmsg msg = asl_new(ASL_TYPE_MSG);
 	asl_set(msg, ASL_KEY_FACILITY, "Performance");
-	uint64_t start = mach_absolute_time();
+	CFAbsoluteTime start = CFAbsoluteTimeGetCurrent();
 	
 	
 	status = CFURLCreateDataAndPropertiesFromResource(kCFAllocatorDefault, url, &datData, NULL, NULL, NULL);
