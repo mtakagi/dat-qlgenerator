@@ -98,10 +98,18 @@ static CFDictionaryRef ResDictionaryCreateFromLine(CFStringRef line)
 	}
 	
 	resDictionary = CFDictionaryCreateMutable(kCFAllocatorDefault, 6, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-	
-	CFDictionarySetValue(resDictionary, k2ChMessageName, CFArrayGetValueAtIndex(resComponents, 0)); // 名前をセット
+    
+    // 名前欄から </b> と <b> を削除する。
+	CFMutableStringRef name = CFStringCreateMutableCopy(kCFAllocatorDefault, CFStringGetLength(CFArrayGetValueAtIndex(resComponents, 0)), CFArrayGetValueAtIndex(resComponents, 0));
+    CFRange range1 = CFRangeMake(0, CFStringGetLength(name));
+    CFRange range2 = CFRangeMake(0, CFStringGetLength(name) - 4);
+    CFStringFindAndReplace(name, CFSTR("</b>"), CFSTR(""), range1, kCFCompareNonliteral);
+    CFStringFindAndReplace(name, CFSTR("<b>"), CFSTR(""), range2, kCFCompareNonliteral);
+	CFDictionarySetValue(resDictionary, k2ChMessageName, name); // 名前をセット
 	CFDictionarySetValue(resDictionary, k2ChMessageMail, CFArrayGetValueAtIndex(resComponents, 1)); // メールをセット
 	
+    CFRelease(name);
+    
 	// 日付と ID 分離する。
 	dateAndID = CFStringCreateArrayBySeparatingStrings(kCFAllocatorDefault, CFArrayGetValueAtIndex(resComponents, 2), CFSTR(" ID:"));
 
