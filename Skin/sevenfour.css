@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+body {
+  background: #efefef;
+  color: black;
+  
+  font: normal 10pt 'Lucida Grande';
+
+  margin: 0;
+  padding: 1%;
+
+  word-wrap: break-word;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 110%;
+  color: red;
+  margin-top: 24px;
+}
+b.name {
+  color: green;
+}
+a:link {
+  color: blue;
+}
+a:active {
+  color: red;
+}
+a:visited {
+  color: #609;
+}
+a[href^="sevenfour://internal/"] {
+  color: black;
+  text-decoration: none;
+}
+
+dt {
+  padding: 5px;
+  border: 1px solid #efefef;
+}
+#new dt {
+  background: #fff;
+  border: 1px solid #ccc;
+}
+
+dd {
+  line-height: 150%;
+}
+div.text-art dd {
+  font-family: 'MS PGothic', 'IPAMonaPGothic', 'Mona';
+  line-height: 100%;
+}
+
+dd img {
+  margin: 1%;
+  vertical-align: middle;
+  display: block;
+  border: 1px solid #666;
+}
+img.thumbnail {
+  height: 100px;
+}
+img.zoom {
+  width: 95%;
+}
+img.actual {
+  ;
+}
+#control {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 24px;
+  width: 100%;
+  
+  background: url(sevenfour://skin/control.png) repeat-x;
+  padding: 1px 2%;
+  font: normal 90% 'Helvetica Neue';
+
+  text-align: right;
+}  
+
+#control a:link, #control a:active, #control a:visited, #control a:hover {
+  color: #000;
+  padding: 0 0 0 5%;
+  text-decoration: none;
+}
